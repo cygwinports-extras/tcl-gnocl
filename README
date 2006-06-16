@@ -1,0 +1,206 @@
+gnocl
+------------------------------------------
+gnocl is a GTK+ and Gnome extension for the programming language Tcl. It 
+provides easy to use commands to build quickly GTK+ / Gnome compliant 
+applications including canvas widget, GConf and drag and drop. It 
+consists of several libraries: one for GTK widgets, one for the Gnome 
+canvas widget and one for the GConf database.
+
+Runtime requirements:
+  cygwin-1.5.19-4
+  GConf2-2.12.1-1
+  gnome-panel-2.10.2-1
+  gnome-vfs2-2.12.2-1
+  gtk2-x11-2.8.17-1
+  libbonoboui2-2.14.0-1
+  libgnomecanvas2-2.14.0-1
+  libgnomeui2-2.14.1-1
+  tcl84-8.4.12-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  cygwin-1.5.19-4
+  binutils-20050610-1
+  cygport-0.1.92-1
+  ed-0.2-1
+  gcc-core-3.4.4-1
+  make-3.80-1
+  sed-4.1.4-1
+
+Canonical homepage:
+  http://www.dr-baum.net/gnocl/
+
+Canonical download:
+  http://prdownloads.sourceforge.net/gnocl/
+
+-------------------------------------------
+
+Build instructions:
+  unpack gnocl-0.9.91-X-src.tar.bz2
+    if you use setup to install this src package, it will be
+	 unpacked under /usr/src automatically
+  cd /usr/src
+  cygport ./gnocl-0.9.91-X.cygport all
+
+This will create:
+  /usr/src/gnocl-0.9.91-X-src.tar.bz2
+  /usr/src/gnocl-0.9.91-X.tar.bz2
+
+-------------------------------------------
+
+Files included in the binary package:
+
+  /usr/lib/tcl8.4/gnocl-0.9.91/gnocl.dll
+  /usr/lib/tcl8.4/gnocl-0.9.91/gnoclCanvas.dll
+  /usr/lib/tcl8.4/gnocl-0.9.91/gnoclGconf.dll
+  /usr/lib/tcl8.4/gnocl-0.9.91/gnoclGnome.dll
+  /usr/lib/tcl8.4/gnocl-0.9.91/gnoclVFS.dll
+  /usr/lib/tcl8.4/gnocl-0.9.91/pkgIndex.tcl
+  /usr/share/doc/Cygwin/gnocl-0.9.91.README
+  /usr/share/doc/gnocl-0.9.91/NEWS
+  /usr/share/doc/gnocl-0.9.91/README
+  /usr/share/doc/gnocl-0.9.91/html/a11137.html
+  /usr/share/doc/gnocl-0.9.91/html/appletfactory.html
+  /usr/share/doc/gnocl-0.9.91/html/book1.html
+  /usr/share/doc/gnocl-0.9.91/html/box.html
+  /usr/share/doc/gnocl-0.9.91/html/button.html
+  /usr/share/doc/gnocl-0.9.91/html/callback.html
+  /usr/share/doc/gnocl-0.9.91/html/canvas.html
+  /usr/share/doc/gnocl-0.9.91/html/canvasbpath.html
+  /usr/share/doc/gnocl-0.9.91/html/canvasclipgroup.html
+  /usr/share/doc/gnocl-0.9.91/html/canvasellipse.html
+  /usr/share/doc/gnocl-0.9.91/html/canvasimage.html
+  /usr/share/doc/gnocl-0.9.91/html/canvasline.html
+  /usr/share/doc/gnocl-0.9.91/html/canvaspolygon.html
+  /usr/share/doc/gnocl-0.9.91/html/canvasrectangle.html
+  /usr/share/doc/gnocl-0.9.91/html/canvasrichtext.html
+  /usr/share/doc/gnocl-0.9.91/html/canvastext.html
+  /usr/share/doc/gnocl-0.9.91/html/canvaswidget.html
+  /usr/share/doc/gnocl-0.9.91/html/checkbutton.html
+  /usr/share/doc/gnocl-0.9.91/html/clipboard.html
+  /usr/share/doc/gnocl-0.9.91/html/colorbutton.html
+  /usr/share/doc/gnocl-0.9.91/html/colorselection.html
+  /usr/share/doc/gnocl-0.9.91/html/combo.html
+  /usr/share/doc/gnocl-0.9.91/html/combobox.html
+  /usr/share/doc/gnocl-0.9.91/html/comboentry.html
+  /usr/share/doc/gnocl-0.9.91/html/configure.html
+  /usr/share/doc/gnocl-0.9.91/html/dialog.html
+  /usr/share/doc/gnocl-0.9.91/html/entry.html
+  /usr/share/doc/gnocl-0.9.91/html/eventbox.html
+  /usr/share/doc/gnocl-0.9.91/html/expander.html
+  /usr/share/doc/gnocl-0.9.91/html/file.html
+  /usr/share/doc/gnocl-0.9.91/html/filechooser.html
+  /usr/share/doc/gnocl-0.9.91/html/fileselection.html
+  /usr/share/doc/gnocl-0.9.91/html/fontbutton.html
+  /usr/share/doc/gnocl-0.9.91/html/fontselection.html
+  /usr/share/doc/gnocl-0.9.91/html/gconf.html
+  /usr/share/doc/gnocl-0.9.91/html/image.html
+  /usr/share/doc/gnocl-0.9.91/html/info.html
+  /usr/share/doc/gnocl-0.9.91/html/label.html
+  /usr/share/doc/gnocl-0.9.91/html/list.html
+  /usr/share/doc/gnocl-0.9.91/html/ln18.html
+  /usr/share/doc/gnocl-0.9.91/html/mainloop.html
+  /usr/share/doc/gnocl-0.9.91/html/menu.html
+  /usr/share/doc/gnocl-0.9.91/html/menubar.html
+  /usr/share/doc/gnocl-0.9.91/html/menucheckitem.html
+  /usr/share/doc/gnocl-0.9.91/html/menuitem.html
+  /usr/share/doc/gnocl-0.9.91/html/menuradioitem.html
+  /usr/share/doc/gnocl-0.9.91/html/menuseparator.html
+  /usr/share/doc/gnocl-0.9.91/html/mime.html
+  /usr/share/doc/gnocl-0.9.91/html/notebook.html
+  /usr/share/doc/gnocl-0.9.91/html/optionmenu.html
+  /usr/share/doc/gnocl-0.9.91/html/paned.html
+  /usr/share/doc/gnocl-0.9.91/html/plug.html
+  /usr/share/doc/gnocl-0.9.91/html/progressbar.html
+  /usr/share/doc/gnocl-0.9.91/html/radiobutton.html
+  /usr/share/doc/gnocl-0.9.91/html/scale.html
+  /usr/share/doc/gnocl-0.9.91/html/scrolledwindow.html
+  /usr/share/doc/gnocl-0.9.91/html/separator.html
+  /usr/share/doc/gnocl-0.9.91/html/session.html
+  /usr/share/doc/gnocl-0.9.91/html/socket.html
+  /usr/share/doc/gnocl-0.9.91/html/spinbutton.html
+  /usr/share/doc/gnocl-0.9.91/html/statusbar.html
+  /usr/share/doc/gnocl-0.9.91/html/t112.html
+  /usr/share/doc/gnocl-0.9.91/html/table.html
+  /usr/share/doc/gnocl-0.9.91/html/text.html
+  /usr/share/doc/gnocl-0.9.91/html/toolbar.html
+  /usr/share/doc/gnocl-0.9.91/html/toolbarcheckitem.html
+  /usr/share/doc/gnocl-0.9.91/html/toolbaritem.html
+  /usr/share/doc/gnocl-0.9.91/html/toolbarradioitem.html
+  /usr/share/doc/gnocl-0.9.91/html/tree.html
+  /usr/share/doc/gnocl-0.9.91/html/update.html
+  /usr/share/doc/gnocl-0.9.91/html/window.html
+  /usr/share/doc/gnocl-0.9.91/html/x159.html
+  /usr/share/doc/gnocl-0.9.91/html/x345.html
+  /usr/share/doc/gnocl-0.9.91/pics/appletFactory.png
+  /usr/share/doc/gnocl-0.9.91/pics/box.png
+  /usr/share/doc/gnocl-0.9.91/pics/button.png
+  /usr/share/doc/gnocl-0.9.91/pics/canvas.png
+  /usr/share/doc/gnocl-0.9.91/pics/checkButton.png
+  /usr/share/doc/gnocl-0.9.91/pics/colorButton.png
+  /usr/share/doc/gnocl-0.9.91/pics/colorSelection.png
+  /usr/share/doc/gnocl-0.9.91/pics/combo.png
+  /usr/share/doc/gnocl-0.9.91/pics/comboBox.png
+  /usr/share/doc/gnocl-0.9.91/pics/comboEntry.png
+  /usr/share/doc/gnocl-0.9.91/pics/dialog.png
+  /usr/share/doc/gnocl-0.9.91/pics/entry.png
+  /usr/share/doc/gnocl-0.9.91/pics/eventBox.png
+  /usr/share/doc/gnocl-0.9.91/pics/expander.png
+  /usr/share/doc/gnocl-0.9.91/pics/fileChooser.png
+  /usr/share/doc/gnocl-0.9.91/pics/fileSelection.png
+  /usr/share/doc/gnocl-0.9.91/pics/fontButton.png
+  /usr/share/doc/gnocl-0.9.91/pics/fontSelection.png
+  /usr/share/doc/gnocl-0.9.91/pics/helloWorld.png
+  /usr/share/doc/gnocl-0.9.91/pics/image.png
+  /usr/share/doc/gnocl-0.9.91/pics/label.png
+  /usr/share/doc/gnocl-0.9.91/pics/list.png
+  /usr/share/doc/gnocl-0.9.91/pics/menu.png
+  /usr/share/doc/gnocl-0.9.91/pics/menuBar.png
+  /usr/share/doc/gnocl-0.9.91/pics/menuCheckItem.png
+  /usr/share/doc/gnocl-0.9.91/pics/menuItem.png
+  /usr/share/doc/gnocl-0.9.91/pics/menuRadioItem.png
+  /usr/share/doc/gnocl-0.9.91/pics/menuSeparator.png
+  /usr/share/doc/gnocl-0.9.91/pics/notebook.png
+  /usr/share/doc/gnocl-0.9.91/pics/optionMenu.png
+  /usr/share/doc/gnocl-0.9.91/pics/paned.png
+  /usr/share/doc/gnocl-0.9.91/pics/percentString.png
+  /usr/share/doc/gnocl-0.9.91/pics/progressBar.png
+  /usr/share/doc/gnocl-0.9.91/pics/radioButton.png
+  /usr/share/doc/gnocl-0.9.91/pics/scale.png
+  /usr/share/doc/gnocl-0.9.91/pics/scrolledWindow.png
+  /usr/share/doc/gnocl-0.9.91/pics/separator.png
+  /usr/share/doc/gnocl-0.9.91/pics/simple.png
+  /usr/share/doc/gnocl-0.9.91/pics/socket.png
+  /usr/share/doc/gnocl-0.9.91/pics/spinButton.png
+  /usr/share/doc/gnocl-0.9.91/pics/statusBar.png
+  /usr/share/doc/gnocl-0.9.91/pics/stockButtons.png
+  /usr/share/doc/gnocl-0.9.91/pics/table.png
+  /usr/share/doc/gnocl-0.9.91/pics/text.png
+  /usr/share/doc/gnocl-0.9.91/pics/toolBar.png
+  /usr/share/doc/gnocl-0.9.91/pics/tree.png
+  /usr/share/doc/gnocl-0.9.91/pics/window.png
+
+------------------
+
+Port Notes:
+
+----- version 0.9.91-1 -----
+Version bump.
+
+----- version 0.9.90-2 -----
+Rebuilt for the unix tcl84 package.
+
+----- version 0.9.90-1 -----
+New upstream release; VFS bindings now included.
+Modules now installed into /usr/lib.
+
+----- version 0.5.17-2 -----
+GConf and Gnome support now included.
+
+----- version 0.5.17-1 -----
+Initial release for Cygwin.  The gtk2-x11 and libgnomecanvas2 bindings 
+have been built in this release.
+
+
+Cygwin port maintained by:
+http://cygwinports.dotsrc.org/

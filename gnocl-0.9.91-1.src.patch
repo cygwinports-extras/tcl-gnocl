@@ -1,0 +1,212 @@
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x ltmain.sh -x 'config.*' -x depcomp -x install-sh -x missing -x mkinstalldirs -x autom4te.cache -x '*compile' -x 'intltool*.in' -x 'xml-i18n-*.in' -x '*.pyc' -x '*.mo' -x '*.gmo' -x ABOUT-NLS -x Makevars.template -x COPYING -x INSTALL -x '*.orig' -x '*.rej' -x '*~' -x '*.temp' gnocl-0.9.91-orig/src/Makefile gnocl-0.9.91/src/Makefile
+--- gnocl-0.9.91-orig/src/Makefile	2006-02-27 14:27:55.000000000 -0600
++++ gnocl-0.9.91/src/Makefile	2006-05-10 19:42:54.979000000 -0500
+@@ -15,11 +15,11 @@
+ USE_CANVAS := 1
+ USE_GCONF := 1
+ USE_VFS := 1
+-USE_GNOME := 0
++USE_GNOME := 1
+ 
+ # for releases use -Os, this makes the lib 15% smaller 
+ # amd64 need -fPIC, x86 works with and without
+-CFLAGS += -Wall -pedantic -fPIC
++CFLAGS += -O2 -Wall -pedantic
+ GTK_24 := $(shell pkg-config --atleast-version=2.4 'gtk+-2.0' && echo yes)
+ GTK_26 := $(shell pkg-config --atleast-version=2.6 'gtk+-2.0' && echo yes)
+ 
+@@ -116,30 +116,30 @@
+ 
+ %.o : %.c; $(CC) -c $(CPPFLAGS) $(CFLAGS) $(ADDCFLAGS) -o $*.o $<
+ 
+-all: pkgIndex.tcl gnocl.so $(SUBDIRS) ; 
++all: pkgIndex.tcl gnocl.dll $(SUBDIRS) ; 
+ 
+-gnocl: gnocl.so ;
++gnocl: gnocl.dll ;
+ 
+-gnocl.so: $(GTK_OBJ)
+-	$(CC) -shared -o $@ $(GTK_OBJ) $(LIBS)
++gnocl.dll: $(GTK_OBJ)
++	$(CC) -shared $(LDFLAGS) -Wl,--out-implib,libgnocl.a -o $@ $(GTK_OBJ) $(LIBS)
+ 
+ gnome canvas gconf vfs: 
+ 	$(MAKE) -C $@
+ 
+-gnoclCanvas.so: 
++gnoclCanvas.dll: 
+ 	$(MAKE) -C canvas
+ 
+-gnoclGconf.so: 
++gnoclGconf.dll: 
+ 	$(MAKE) -C gconf
+ 
+-gnoclVFS.so: 
++gnoclVFS.dll: 
+ 	$(MAKE) -C vfs
+ 
+-gnoclGnome.so: 
++gnoclGnome.dll: 
+ 	$(MAKE) -C gnome
+ 
+ clean:
+-	rm -f $(GTK_OBJ) gnocl.so 
++	rm -f $(GTK_OBJ) gnocl.dll 
+ 	$(MAKE) -C canvas clean
+ 	$(MAKE) -C gconf clean
+ 	$(MAKE) -C gnome clean
+@@ -148,6 +148,9 @@
+ install:
+ 	./install.tcl $(VERSION) install
+ 
++test:
++	./install.tcl $(VERSION) test
++
+ installAndTest:
+ 	./install.tcl $(VERSION) install
+ 	./install.tcl $(VERSION) test
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x ltmain.sh -x 'config.*' -x depcomp -x install-sh -x missing -x mkinstalldirs -x autom4te.cache -x '*compile' -x 'intltool*.in' -x 'xml-i18n-*.in' -x '*.pyc' -x '*.mo' -x '*.gmo' -x ABOUT-NLS -x Makevars.template -x COPYING -x INSTALL -x '*.orig' -x '*.rej' -x '*~' -x '*.temp' gnocl-0.9.91-orig/src/canvas/Makefile gnocl-0.9.91/src/canvas/Makefile
+--- gnocl-0.9.91-orig/src/canvas/Makefile	2006-02-27 14:27:55.000000000 -0600
++++ gnocl-0.9.91/src/canvas/Makefile	2006-05-10 19:42:55.010250000 -0500
+@@ -3,7 +3,7 @@
+ # this Makefile must be called from the Master Gnocl Makefile
+ 
+ ADDCFLAGS += $(shell pkg-config --cflags libgnomecanvas-2.0)
+-LIBS += $(shell pkg-config --libs libgnomecanvas-2.0)
++LIBS = $(shell pkg-config --libs libgnomecanvas-2.0)
+ 
+ ############################################################
+ # There should be no need to edit something below this line 
+@@ -28,11 +28,11 @@
+ 
+ %.o : %.c; $(CC) -c $(CPPFLAGS) $(CFLAGS) $(ADDCFLAGS) -o $*.o $<
+ 
+-canvas: ../gnoclCanvas.so ;
++canvas: ../gnoclCanvas.dll ;
+ 
+-../gnoclCanvas.so: $(OBJS)
+-	$(CC) -shared -o ../gnoclCanvas.so $(OBJS) $(LIBS)
++../gnoclCanvas.dll: $(OBJS)
++	$(CC) -shared $(LDFLAGS) -o ../gnoclCanvas.dll $(OBJS) ../libgnocl.a $(LIBS)
+ 
+ clean:
+-	rm -f $(OBJS) ../gnoclCanvas.so 
++	rm -f $(OBJS) ../gnoclCanvas.dll 
+ 
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x ltmain.sh -x 'config.*' -x depcomp -x install-sh -x missing -x mkinstalldirs -x autom4te.cache -x '*compile' -x 'intltool*.in' -x 'xml-i18n-*.in' -x '*.pyc' -x '*.mo' -x '*.gmo' -x ABOUT-NLS -x Makevars.template -x COPYING -x INSTALL -x '*.orig' -x '*.rej' -x '*~' -x '*.temp' gnocl-0.9.91-orig/src/gconf/Makefile gnocl-0.9.91/src/gconf/Makefile
+--- gnocl-0.9.91-orig/src/gconf/Makefile	2006-02-27 14:27:55.000000000 -0600
++++ gnocl-0.9.91/src/gconf/Makefile	2006-05-10 19:42:55.025875000 -0500
+@@ -3,7 +3,7 @@
+ # this Makefile must be called from the Master Gnocl Makefile
+ 
+ ADDCFLAGS += $(shell pkg-config --cflags gconf-2.0)
+-LIBS += $(shell pkg-config --libs gconf-2.0) 
++LIBS = $(shell pkg-config --libs gconf-2.0 gobject-2.0)
+ 
+ ############################################################
+ # There should be no need to edit something below this line 
+@@ -17,11 +17,11 @@
+ 
+ %.o : %.c; $(CC) -c $(CPPFLAGS) $(CFLAGS) $(ADDCFLAGS) -o $*.o $<
+ 
+-gconf: ../gnoclGconf.so ;
++gconf: ../gnoclGconf.dll ;
+ 
+-../gnoclGconf.so: $(OBJS)
+-	$(CC) -shared -o ../gnoclGconf.so $(OBJS) $(LIBS)
++../gnoclGconf.dll: $(OBJS)
++	$(CC) -shared $(LDFLAGS) -o ../gnoclGconf.dll $(OBJS) ../libgnocl.a $(LIBS)
+ 
+ clean:
+-	rm -f $(OBJS) ../gnoclGconf.so 
++	rm -f $(OBJS) ../gnoclGconf.dll 
+ 
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x ltmain.sh -x 'config.*' -x depcomp -x install-sh -x missing -x mkinstalldirs -x autom4te.cache -x '*compile' -x 'intltool*.in' -x 'xml-i18n-*.in' -x '*.pyc' -x '*.mo' -x '*.gmo' -x ABOUT-NLS -x Makevars.template -x COPYING -x INSTALL -x '*.orig' -x '*.rej' -x '*~' -x '*.temp' gnocl-0.9.91-orig/src/gnome/Makefile gnocl-0.9.91/src/gnome/Makefile
+--- gnocl-0.9.91-orig/src/gnome/Makefile	2006-02-27 14:27:55.000000000 -0600
++++ gnocl-0.9.91/src/gnome/Makefile	2006-05-10 19:42:55.041500000 -0500
+@@ -3,7 +3,7 @@
+ # this Makefile must be called from the Master Gnocl Makefile
+ 
+ ADDCFLAGS += $(shell pkg-config --cflags libgnomeui-2.0 libpanelapplet-2.0)
+-LIBS += $(shell pkg-config --libs libgnomeui-2.0 libpanelapplet-2.0) 
++LIBS = $(shell pkg-config --libs libgnomeui-2.0 libpanelapplet-2.0)
+ 
+ ############################################################
+ # There should be no need to edit something below this line 
+@@ -19,11 +19,11 @@
+ 
+ %.o : %.c; $(CC) -c $(CPPFLAGS) $(CFLAGS) $(ADDCFLAGS) -o $*.o $<
+ 
+-gnome: ../gnoclGnome.so ;
++gnome: ../gnoclGnome.dll ;
+ 
+-../gnoclGnome.so: $(OBJS)
+-	$(CC) -shared -o ../gnoclGnome.so $(OBJS) $(LIBS)
++../gnoclGnome.dll: $(OBJS)
++	$(CC) -shared $(LDFLAGS) -o ../gnoclGnome.dll $(OBJS) ../libgnocl.a $(LIBS)
+ 
+ clean:
+-	rm -f $(OBJS) ../gnoclGnome.so 
++	rm -f $(OBJS) ../gnoclGnome.dll 
+ 
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x ltmain.sh -x 'config.*' -x depcomp -x install-sh -x missing -x mkinstalldirs -x autom4te.cache -x '*compile' -x 'intltool*.in' -x 'xml-i18n-*.in' -x '*.pyc' -x '*.mo' -x '*.gmo' -x ABOUT-NLS -x Makevars.template -x COPYING -x INSTALL -x '*.orig' -x '*.rej' -x '*~' -x '*.temp' gnocl-0.9.91-orig/src/install.tcl gnocl-0.9.91/src/install.tcl
+--- gnocl-0.9.91-orig/src/install.tcl	2006-02-27 14:27:55.000000000 -0600
++++ gnocl-0.9.91/src/install.tcl	2006-05-10 19:42:55.041500000 -0500
+@@ -26,7 +26,7 @@
+                   }
+                   puts "Creating $destDir"
+                   file mkdir $destDir
+-                  set files [glob *.so]
++                  set files [glob *.dll]
+                   lappend files pkgIndex.tcl
+                   foreach file $files {
+                      puts "Copying $file"
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x ltmain.sh -x 'config.*' -x depcomp -x install-sh -x missing -x mkinstalldirs -x autom4te.cache -x '*compile' -x 'intltool*.in' -x 'xml-i18n-*.in' -x '*.pyc' -x '*.mo' -x '*.gmo' -x ABOUT-NLS -x Makevars.template -x COPYING -x INSTALL -x '*.orig' -x '*.rej' -x '*~' -x '*.temp' gnocl-0.9.91-orig/src/pkgIndex.tcl gnocl-0.9.91/src/pkgIndex.tcl
+--- gnocl-0.9.91-orig/src/pkgIndex.tcl	2006-02-27 14:27:55.000000000 -0600
++++ gnocl-0.9.91/src/pkgIndex.tcl	2006-05-10 19:43:48.510250000 -0500
+@@ -8,12 +8,12 @@
+ # script is sourced, the variable $dir must contain the
+ # full path name of this file's directory.
+ 
+-package ifneeded Gnocl 0.9.91 [list load [file join $dir gnocl.so]]
++package ifneeded Gnocl 0.9.91 [list load [file join $dir gnocl.dll]]
+ package ifneeded GnoclCanvas 0.9.91 "package require -exact Gnocl 0.9.91 
+-   [list load [file join $dir gnoclCanvas.so]]"
++   [list load [file join $dir gnoclCanvas.dll]]"
+ package ifneeded GnoclGconf 0.9.91 "package require -exact Gnocl 0.9.91 
+-   [list load [file join $dir gnoclGconf.so]]"
++   [list load [file join $dir gnoclGconf.dll]]"
+ package ifneeded GnoclVFS 0.9.91 "package require -exact Gnocl 0.9.91 
+-   [list load [file join $dir gnoclVFS.so]]"
++   [list load [file join $dir gnoclVFS.dll]]"
+ package ifneeded GnoclGnome 0.9.91 "package require -exact Gnocl 0.9.91 
+-   [list load [file join $dir gnoclGnome.so]]"
++   [list load [file join $dir gnoclGnome.dll]]"
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x ltmain.sh -x 'config.*' -x depcomp -x install-sh -x missing -x mkinstalldirs -x autom4te.cache -x '*compile' -x 'intltool*.in' -x 'xml-i18n-*.in' -x '*.pyc' -x '*.mo' -x '*.gmo' -x ABOUT-NLS -x Makevars.template -x COPYING -x INSTALL -x '*.orig' -x '*.rej' -x '*~' -x '*.temp' gnocl-0.9.91-orig/src/vfs/Makefile gnocl-0.9.91/src/vfs/Makefile
+--- gnocl-0.9.91-orig/src/vfs/Makefile	2006-02-27 14:27:55.000000000 -0600
++++ gnocl-0.9.91/src/vfs/Makefile	2006-05-10 19:42:55.072750000 -0500
+@@ -3,7 +3,7 @@
+ # this Makefile must be called from the Master Gnocl Makefile
+ 
+ ADDCFLAGS += $(shell pkg-config --cflags gnome-vfs-2.0)
+-LIBS += $(shell pkg-config --libs gnome-vfs-2.0) 
++LIBS = $(shell pkg-config --libs gnome-vfs-2.0) 
+ 
+ ############################################################
+ # There should be no need to edit something below this line 
+@@ -19,11 +19,11 @@
+ 
+ %.o : %.c; $(CC) -c $(CPPFLAGS) $(CFLAGS) $(ADDCFLAGS) -o $*.o $<
+ 
+-vfs: ../gnoclVFS.so ;
++vfs: ../gnoclVFS.dll ;
+ 
+-../gnoclVFS.so: $(OBJS)
+-	$(CC) -shared -o ../gnoclVFS.so $(OBJS) $(LIBS)
++../gnoclVFS.dll: $(OBJS)
++	$(CC) -shared -o ../gnoclVFS.dll $(OBJS) ../libgnocl.a $(LIBS)
+ 
+ clean:
+-	rm -f $(OBJS) ../gnoclVFS.so 
++	rm -f $(OBJS) ../gnoclVFS.dll 
+ 

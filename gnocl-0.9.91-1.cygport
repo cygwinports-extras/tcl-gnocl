@@ -1,0 +1,20 @@
+DESCRIPTION="Tcl bindings for GTK+ and GNOME libraries"
+HOMEPAGE="http://www.dr-baum.net/gnocl/"
+SRC_URI="http://easynews.dl.sourceforge.net/gnocl/${P}.tar.bz2"
+
+src_compile() {
+	lndirs
+	cd ${B}/src
+	cygmake -j1 CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS} -Wl,--enable-auto-image-base"
+}
+
+src_install() {
+	cd ${B}/src
+	make install DESTDIR=${D}$(echo "puts [info library]" | tclsh) || error "make install failed"
+
+	insinto /usr/share/doc/${P}/html
+	doins ${S}/doc/gnocl/*.html
+
+	insinto /usr/share/doc/${P}/pics
+	doins ${S}/doc/pics/*.png
+}
