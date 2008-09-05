@@ -1,6 +1,9 @@
+ORIG_PN="gnocl"
+inherit tcl
+
 DESCRIPTION="Tcl bindings for GTK+ and GNOME libraries"
 HOMEPAGE="http://www.dr-baum.net/gnocl/"
-SRC_URI="http://easynews.dl.sourceforge.net/gnocl/${P}.tar.bz2"
+SRC_URI="mirror://sourceforge/gnocl/${ORIG_PN}-${PV}.tar.bz2"
 
 src_compile() {
 	lndirs
@@ -10,7 +13,7 @@ src_compile() {
 
 src_install() {
 	cd ${B}/src
-	make install DESTDIR=${D}$(echo "puts [info library]" | tclsh) || error "make install failed"
+	cygmake install DESTDIR=${D}${TCL_LIBDIR}
 
 	insinto /usr/share/doc/${P}/html
 	doins ${S}/doc/gnocl/*.html

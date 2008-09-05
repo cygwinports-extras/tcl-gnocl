@@ -1,3 +1,4 @@
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x ltmain.sh -x 'config.*' -x depcomp -x install-sh -x missing -x mkinstalldirs -x autom4te.cache -x '*compile' -x 'intltool*.in' -x 'xml-i18n-*.in' -x '*.pyc' -x '*.mo' -x '*.gmo' -x ABOUT-NLS -x Makevars.template -x COPYING -x INSTALL -x '*.orig' -x '*.rej' -x '*~' -x '*.temp' gnocl-0.9.91-orig/src/Makefile gnocl-0.9.91/src/Makefile
 --- gnocl-0.9.91-orig/src/Makefile	2006-02-27 14:27:55.000000000 -0600
 +++ gnocl-0.9.91/src/Makefile	2006-05-10 19:42:54.979000000 -0500
 @@ -15,11 +15,11 @@
@@ -64,6 +65,7 @@
  installAndTest:
  	./install.tcl $(VERSION) install
  	./install.tcl $(VERSION) test
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x ltmain.sh -x 'config.*' -x depcomp -x install-sh -x missing -x mkinstalldirs -x autom4te.cache -x '*compile' -x 'intltool*.in' -x 'xml-i18n-*.in' -x '*.pyc' -x '*.mo' -x '*.gmo' -x ABOUT-NLS -x Makevars.template -x COPYING -x INSTALL -x '*.orig' -x '*.rej' -x '*~' -x '*.temp' gnocl-0.9.91-orig/src/canvas/Makefile gnocl-0.9.91/src/canvas/Makefile
 --- gnocl-0.9.91-orig/src/canvas/Makefile	2006-02-27 14:27:55.000000000 -0600
 +++ gnocl-0.9.91/src/canvas/Makefile	2006-05-10 19:42:55.010250000 -0500
 @@ -3,7 +3,7 @@
@@ -91,6 +93,7 @@
 -	rm -f $(OBJS) ../gnoclCanvas.so 
 +	rm -f $(OBJS) ../gnoclCanvas.dll 
  
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x ltmain.sh -x 'config.*' -x depcomp -x install-sh -x missing -x mkinstalldirs -x autom4te.cache -x '*compile' -x 'intltool*.in' -x 'xml-i18n-*.in' -x '*.pyc' -x '*.mo' -x '*.gmo' -x ABOUT-NLS -x Makevars.template -x COPYING -x INSTALL -x '*.orig' -x '*.rej' -x '*~' -x '*.temp' gnocl-0.9.91-orig/src/gconf/Makefile gnocl-0.9.91/src/gconf/Makefile
 --- gnocl-0.9.91-orig/src/gconf/Makefile	2006-02-27 14:27:55.000000000 -0600
 +++ gnocl-0.9.91/src/gconf/Makefile	2006-05-10 19:42:55.025875000 -0500
 @@ -3,7 +3,7 @@
@@ -118,6 +121,7 @@
 -	rm -f $(OBJS) ../gnoclGconf.so 
 +	rm -f $(OBJS) ../gnoclGconf.dll 
  
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x ltmain.sh -x 'config.*' -x depcomp -x install-sh -x missing -x mkinstalldirs -x autom4te.cache -x '*compile' -x 'intltool*.in' -x 'xml-i18n-*.in' -x '*.pyc' -x '*.mo' -x '*.gmo' -x ABOUT-NLS -x Makevars.template -x COPYING -x INSTALL -x '*.orig' -x '*.rej' -x '*~' -x '*.temp' gnocl-0.9.91-orig/src/gnome/Makefile gnocl-0.9.91/src/gnome/Makefile
 --- gnocl-0.9.91-orig/src/gnome/Makefile	2006-02-27 14:27:55.000000000 -0600
 +++ gnocl-0.9.91/src/gnome/Makefile	2006-05-10 19:42:55.041500000 -0500
 @@ -3,7 +3,7 @@
@@ -145,6 +149,7 @@
 -	rm -f $(OBJS) ../gnoclGnome.so 
 +	rm -f $(OBJS) ../gnoclGnome.dll 
  
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x ltmain.sh -x 'config.*' -x depcomp -x install-sh -x missing -x mkinstalldirs -x autom4te.cache -x '*compile' -x 'intltool*.in' -x 'xml-i18n-*.in' -x '*.pyc' -x '*.mo' -x '*.gmo' -x ABOUT-NLS -x Makevars.template -x COPYING -x INSTALL -x '*.orig' -x '*.rej' -x '*~' -x '*.temp' gnocl-0.9.91-orig/src/install.tcl gnocl-0.9.91/src/install.tcl
 --- gnocl-0.9.91-orig/src/install.tcl	2006-02-27 14:27:55.000000000 -0600
 +++ gnocl-0.9.91/src/install.tcl	2006-05-10 19:42:55.041500000 -0500
 @@ -26,7 +26,7 @@
@@ -156,6 +161,7 @@
                    lappend files pkgIndex.tcl
                    foreach file $files {
                       puts "Copying $file"
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x ltmain.sh -x 'config.*' -x depcomp -x install-sh -x missing -x mkinstalldirs -x autom4te.cache -x '*compile' -x 'intltool*.in' -x 'xml-i18n-*.in' -x '*.pyc' -x '*.mo' -x '*.gmo' -x ABOUT-NLS -x Makevars.template -x COPYING -x INSTALL -x '*.orig' -x '*.rej' -x '*~' -x '*.temp' gnocl-0.9.91-orig/src/pkgIndex.tcl gnocl-0.9.91/src/pkgIndex.tcl
 --- gnocl-0.9.91-orig/src/pkgIndex.tcl	2006-02-27 14:27:55.000000000 -0600
 +++ gnocl-0.9.91/src/pkgIndex.tcl	2006-05-10 19:43:48.510250000 -0500
 @@ -8,12 +8,12 @@
@@ -176,6 +182,7 @@
  package ifneeded GnoclGnome 0.9.91 "package require -exact Gnocl 0.9.91 
 -   [list load [file join $dir gnoclGnome.so]]"
 +   [list load [file join $dir gnoclGnome.dll]]"
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x ltmain.sh -x 'config.*' -x depcomp -x install-sh -x missing -x mkinstalldirs -x autom4te.cache -x '*compile' -x 'intltool*.in' -x 'xml-i18n-*.in' -x '*.pyc' -x '*.mo' -x '*.gmo' -x ABOUT-NLS -x Makevars.template -x COPYING -x INSTALL -x '*.orig' -x '*.rej' -x '*~' -x '*.temp' gnocl-0.9.91-orig/src/vfs/Makefile gnocl-0.9.91/src/vfs/Makefile
 --- gnocl-0.9.91-orig/src/vfs/Makefile	2006-02-27 14:27:55.000000000 -0600
 +++ gnocl-0.9.91/src/vfs/Makefile	2006-05-10 19:42:55.072750000 -0500
 @@ -3,7 +3,7 @@
