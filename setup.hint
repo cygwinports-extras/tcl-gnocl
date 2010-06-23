@@ -1,6 +1,6 @@
 category: Gnome Tcl
-requires: libcairo2 libgcc1 libgconf2_4 libgdk_pixbuf2.0_0 libglade2.0_0 libglib2.0_0 libgnome2_0 libgnomecanvas2_0 libgnomeui2_0 libgnomevfs2_0 libgtk2.0_0 libpango1.0_0 libvte9 tcl
-sdesc: "Tcl bindings for GTK+ and GNOME 2.x libraries"
+requires: libcairo2 libgcc1 libgdk_pixbuf2.0_0 libglade2.0_0 libglib2.0_0 libgtk2.0_0 libpango1.0_0 tcl
+sdesc: "Tcl bindings for GTK+"
 ldesc: "gnocl is a GTK+ and Gnome extension for the programming 
 language Tcl. It provides easy to use commands to build quickly GTK+ / 
 Gnome compliant applications including canvas widget, GConf and drag 

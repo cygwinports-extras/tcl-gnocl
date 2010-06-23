@@ -1,0 +1,23 @@
+ORIG_PN="gnocl"
+inherit tcl
+
+DESCRIPTION="Tcl bindings for GTK+"
+HOMEPAGE="http://www.dr-baum.net/gnocl/"
+SRC_URI="mirror://sourceforge/gnocl/${ORIG_PN}-${PV}.tar.bz2"
+
+src_compile() {
+	lndirs
+	cd ${B}/src
+	cygmake LIBS="-Wl,--out-implib,libgnocl-${PV}.a $(pkg-config --libs gtk+-2.0 libglade-2.0) -ltclstub${TCL_VERSION}"
+}
+
+src_install() {
+	cd ${B}/src
+	exeinto /usr/lib/${ORIG_PN}${PV%[a-z]*}
+	doexe *.so pkgIndex.tcl
+
+	insinto /usr/include
+	doins gnocl.h
+
+	dolib libgnocl-${PV}.a
+}
